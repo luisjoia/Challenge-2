@@ -1,0 +1,31 @@
+CREATE TABLE products(
+    id INT NOT NULL,
+    vertical_id INT NOT NULL,
+    provider_id INT NOT NULL,
+    is_sponsored boolean NOT NULL,
+	data json,
+	PRIMARY KEY(id),
+	constraint fk_vertical_id
+	FOREIGN KEY(vertical_id)
+	references verticals(id),
+	constraint fk_provider_id
+	FOREIGN KEY(provider_id)
+	references providers(id)
+);
+
+
+
+CREATE TABLE verticals(
+    id INT NOT NULL PRIMARY KEY,
+	code VARCHAR(25),
+    name VARCHAR(100)
+);
+
+
+CREATE TABLE providers(
+    id INT NOT NULL PRIMARY KEY,
+	code VARCHAR(25),
+    name VARCHAR(50),
+    summary varchar(300),
+    is_active BOOLEAN
+);

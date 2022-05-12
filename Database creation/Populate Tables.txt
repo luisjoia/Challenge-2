@@ -1,0 +1,929 @@
+WITH products_json (doc) AS (VALUES(
+'[
+  {
+    "id": 1,
+    "vertical_id": 1,
+    "provider_id": 4,
+    "is_sponsored": "TRUE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 100,
+      "internet_upload_speed_in_mbs": 40,
+      "tv_channels": 120,
+      "mobile_phone_count": 1,
+      "mobile_phone_data_in_gbps": 5,
+      "price": 29.99
+    }
+  },
+  {
+    "id": 2,
+    "vertical_id": 1,
+    "provider_id": 4,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 200,
+      "internet_upload_speed_in_mbs": 100,
+      "tv_channels": 120,
+      "mobile_phone_count": 1,
+      "mobile_phone_data_in_gbps": 5,
+      "price": 39.99
+    }
+  },
+  {
+    "id": 3,
+    "vertical_id": 1,
+    "provider_id": 4,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 500,
+      "internet_upload_speed_in_mbs": 200,
+      "tv_channels": 120,
+      "mobile_phone_count": 1,
+      "mobile_phone_data_in_gbps": 10,
+      "price": 69.99
+    }
+  },
+  {
+    "id": 4,
+    "vertical_id": 1,
+    "provider_id": 4,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 500,
+      "internet_upload_speed_in_mbs": 200,
+      "tv_channels": 120,
+      "mobile_phone_count": 2,
+      "mobile_phone_data_in_gbps": 10,
+      "price": 59.99
+    }
+  },
+  {
+    "id": 5,
+    "vertical_id": 1,
+    "provider_id": 4,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 500,
+      "internet_upload_speed_in_mbs": 200,
+      "tv_channels": 120,
+      "mobile_phone_count": 4,
+      "mobile_phone_data_in_gbps": 5,
+      "price": 89.99
+    }
+  },
+  {
+    "id": 6,
+    "vertical_id": 1,
+    "provider_id": 4,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 1000,
+      "internet_upload_speed_in_mbs": 400,
+      "tv_channels": 120,
+      "mobile_phone_count": 1,
+      "mobile_phone_data_in_gbps": 2,
+      "price": 59.99
+    }
+  },
+  {
+    "id": 7,
+    "vertical_id": 1,
+    "provider_id": 4,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 3,
+      "internet_download_speed_in_mbs": 1000,
+      "internet_upload_speed_in_mbs": 400,
+      "tv_channels": 120,
+      "mobile_phone_count": 0,
+      "mobile_phone_data_in_gbps": null,
+      "price": 39.99
+    }
+  },
+  {
+    "id": 8,
+    "vertical_id": 1,
+    "provider_id": 4,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 3,
+      "internet_download_speed_in_mbs": 500,
+      "internet_upload_speed_in_mbs": 200,
+      "tv_channels": 120,
+      "mobile_phone_count": 0,
+      "mobile_phone_data_in_gbps": null,
+      "price": 29.99
+    }
+  },
+  {
+    "id": 9,
+    "vertical_id": 1,
+    "provider_id": 6,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 100,
+      "internet_upload_speed_in_mbs": 40,
+      "tv_channels": 130,
+      "mobile_phone_count": 1,
+      "mobile_phone_data_in_gbps": 7,
+      "price": 29.99
+    }
+  },
+  {
+    "id": 10,
+    "vertical_id": 1,
+    "provider_id": 6,
+    "is_sponsored": "TRUE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 200,
+      "internet_upload_speed_in_mbs": 100,
+      "tv_channels": 130,
+      "mobile_phone_count": 1,
+      "mobile_phone_data_in_gbps": 7,
+      "price": 39.99
+    }
+  },
+  {
+    "id": 11,
+    "vertical_id": 1,
+    "provider_id": 6,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 500,
+      "internet_upload_speed_in_mbs": 200,
+      "tv_channels": 130,
+      "mobile_phone_count": 1,
+      "mobile_phone_data_in_gbps": 10,
+      "price": 69.99
+    }
+  },
+  {
+    "id": 12,
+    "vertical_id": 1,
+    "provider_id": 6,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 500,
+      "internet_upload_speed_in_mbs": 200,
+      "tv_channels": 130,
+      "mobile_phone_count": 2,
+      "mobile_phone_data_in_gbps": 10,
+      "price": 59.99
+    }
+  },
+  {
+    "id": 13,
+    "vertical_id": 1,
+    "provider_id": 6,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 500,
+      "internet_upload_speed_in_mbs": 200,
+      "tv_channels": 130,
+      "mobile_phone_count": 4,
+      "mobile_phone_data_in_gbps": 7,
+      "price": 89.99
+    }
+  },
+  {
+    "id": 14,
+    "vertical_id": 1,
+    "provider_id": 6,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 1000,
+      "internet_upload_speed_in_mbs": 400,
+      "tv_channels": 130,
+      "mobile_phone_count": 1,
+      "mobile_phone_data_in_gbps": 3,
+      "price": 59.99
+    }
+  },
+  {
+    "id": 15,
+    "vertical_id": 1,
+    "provider_id": 6,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 3,
+      "internet_download_speed_in_mbs": 1000,
+      "internet_upload_speed_in_mbs": 400,
+      "tv_channels": 130,
+      "mobile_phone_count": 0,
+      "mobile_phone_data_in_gbps": null,
+      "price": 39.99
+    }
+  },
+  {
+    "id": 16,
+    "vertical_id": 1,
+    "provider_id": 5,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 500,
+      "internet_upload_speed_in_mbs": 200,
+      "tv_channels": 120,
+      "mobile_phone_count": 2,
+      "mobile_phone_data_in_gbps": 10,
+      "price": 59.99
+    }
+  },
+  {
+    "id": 17,
+    "vertical_id": 1,
+    "provider_id": 5,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 500,
+      "internet_upload_speed_in_mbs": 200,
+      "tv_channels": 120,
+      "mobile_phone_count": 4,
+      "mobile_phone_data_in_gbps": 5,
+      "price": 89.99
+    }
+  },
+  {
+    "id": 18,
+    "vertical_id": 1,
+    "provider_id": 5,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 1000,
+      "internet_upload_speed_in_mbs": 400,
+      "tv_channels": 120,
+      "mobile_phone_count": 1,
+      "mobile_phone_data_in_gbps": 2,
+      "price": 59.99
+    }
+  },
+  {
+    "id": 19,
+    "vertical_id": 1,
+    "provider_id": 5,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 3,
+      "internet_download_speed_in_mbs": 1000,
+      "internet_upload_speed_in_mbs": 400,
+      "tv_channels": 120,
+      "mobile_phone_count": 0,
+      "mobile_phone_data_in_gbps": null,
+      "price": 39.99
+    }
+  },
+  {
+    "id": 20,
+    "vertical_id": 1,
+    "provider_id": 5,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 3,
+      "internet_download_speed_in_mbs": 500,
+      "internet_upload_speed_in_mbs": 200,
+      "tv_channels": 120,
+      "mobile_phone_count": 0,
+      "mobile_phone_data_in_gbps": null,
+      "price": 29.99
+    }
+  },
+  {
+    "id": 21,
+    "vertical_id": 1,
+    "provider_id": 7,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 500,
+      "internet_upload_speed_in_mbs": 200,
+      "tv_channels": 120,
+      "mobile_phone_count": 2,
+      "mobile_phone_data_in_gbps": 10,
+      "price": 49.99
+    }
+  },
+  {
+    "id": 22,
+    "vertical_id": 1,
+    "provider_id": 7,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 500,
+      "internet_upload_speed_in_mbs": 200,
+      "tv_channels": 120,
+      "mobile_phone_count": 4,
+      "mobile_phone_data_in_gbps": 5,
+      "price": 79.99
+    }
+  },
+  {
+    "id": 23,
+    "vertical_id": 1,
+    "provider_id": 7,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 1000,
+      "internet_upload_speed_in_mbs": 400,
+      "tv_channels": 120,
+      "mobile_phone_count": 1,
+      "mobile_phone_data_in_gbps": 2,
+      "price": 49.99
+    }
+  },
+  {
+    "id": 24,
+    "vertical_id": 1,
+    "provider_id": 7,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 3,
+      "internet_download_speed_in_mbs": 1000,
+      "internet_upload_speed_in_mbs": 400,
+      "tv_channels": 120,
+      "mobile_phone_count": 0,
+      "mobile_phone_data_in_gbps": null,
+      "price": 29.99
+    }
+  },
+  {
+    "id": 25,
+    "vertical_id": 1,
+    "provider_id": 7,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 3,
+      "internet_download_speed_in_mbs": 500,
+      "internet_upload_speed_in_mbs": 200,
+      "tv_channels": 120,
+      "mobile_phone_count": 0,
+      "mobile_phone_data_in_gbps": null,
+      "price": 19.99
+    }
+  },
+  {
+    "id": 26,
+    "vertical_id": 1,
+    "provider_id": 8,
+    "is_sponsored": "TRUE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 200,
+      "internet_upload_speed_in_mbs": 100,
+      "tv_channels": 130,
+      "mobile_phone_count": 1,
+      "mobile_phone_data_in_gbps": 7,
+      "price": 39.99
+    }
+  },
+  {
+    "id": 27,
+    "vertical_id": 1,
+    "provider_id": 8,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 500,
+      "internet_upload_speed_in_mbs": 200,
+      "tv_channels": 130,
+      "mobile_phone_count": 1,
+      "mobile_phone_data_in_gbps": 10,
+      "price": 69.99
+    }
+  },
+  {
+    "id": 28,
+    "vertical_id": 1,
+    "provider_id": 8,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 500,
+      "internet_upload_speed_in_mbs": 200,
+      "tv_channels": 130,
+      "mobile_phone_count": 2,
+      "mobile_phone_data_in_gbps": 10,
+      "price": 59.99
+    }
+  },
+  {
+    "id": 29,
+    "vertical_id": 1,
+    "provider_id": 8,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 500,
+      "internet_upload_speed_in_mbs": 200,
+      "tv_channels": 130,
+      "mobile_phone_count": 4,
+      "mobile_phone_data_in_gbps": 7,
+      "price": 89.99
+    }
+  },
+  {
+    "id": 30,
+    "vertical_id": 1,
+    "provider_id": 8,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 4,
+      "internet_download_speed_in_mbs": 1000,
+      "internet_upload_speed_in_mbs": 400,
+      "tv_channels": 130,
+      "mobile_phone_count": 1,
+      "mobile_phone_data_in_gbps": 3,
+      "price": 59.99
+    }
+  },
+  {
+    "id": 31,
+    "vertical_id": 1,
+    "provider_id": 8,
+    "is_sponsored": "FALSE",
+    "data": {
+      "p": 3,
+      "internet_download_speed_in_mbs": 1000,
+      "internet_upload_speed_in_mbs": 400,
+      "tv_channels": 130,
+      "mobile_phone_count": 0,
+      "mobile_phone_data_in_gbps": null,
+      "price": 39.99
+    }
+  },
+  {
+    "id": 32,
+    "vertical_id": 2,
+    "provider_id": 1,
+    "is_sponsored": "FALSE",
+    "data": "{\n       \"spread_percentage\":1.2,\n       \"min_loan_amount\":5000,\n       \"max_loan_amount\":20000,\n       \"min_term_in_months\":24,\n       \"max_term_in_months\":80,\n}"
+  },
+  {
+    "id": 33,
+    "vertical_id": 2,
+    "provider_id": 1,
+    "is_sponsored": "FALSE",
+    "data": {
+      "taeg_percentage": 6,
+      "min_loan_amount": 5000,
+      "max_loan_amount": 25000,
+      "min_term_in_months": 24,
+      "max_term_in_months": 80,
+      "min_income": 2000
+    }
+  },
+  {
+    "id": 34,
+    "vertical_id": 2,
+    "provider_id": 2,
+    "is_sponsored": "TRUE",
+    "data": {
+      "taeg_percentage": 8.2,
+      "min_loan_amount": 5000,
+      "max_loan_amount": 20000,
+      "min_term_in_months": 24,
+      "max_term_in_months": 80,
+      "min_income": 1000
+    }
+  },
+  {
+    "id": 35,
+    "vertical_id": 2,
+    "provider_id": 2,
+    "is_sponsored": "FALSE",
+    "data": {
+      "taeg_percentage": 6,
+      "min_loan_amount": 5000,
+      "max_loan_amount": 25000,
+      "min_term_in_months": 24,
+      "max_term_in_months": 80,
+      "min_income": 2000
+    }
+  },
+  {
+    "id": 36,
+    "vertical_id": 2,
+    "provider_id": 3,
+    "is_sponsored": "FALSE",
+    "data": {
+      "taeg_percentage": 8.2,
+      "min_loan_amount": 5000,
+      "max_loan_amount": 20000,
+      "min_term_in_months": 24,
+      "max_term_in_months": 80,
+      "min_income": 1000
+    }
+  },
+  {
+    "id": 37,
+    "vertical_id": 2,
+    "provider_id": 3,
+    "is_sponsored": "FALSE",
+    "data": {
+      "taeg_percentage": 6,
+      "min_loan_amount": 5000,
+      "max_loan_amount": 25000,
+      "min_term_in_months": 24,
+      "max_term_in_months": 80,
+      "min_income": 2000
+    }
+  },
+  {
+    "id": 38,
+    "vertical_id": 3,
+    "provider_id": 9,
+    "is_sponsored": "TRUE",
+    "data": {
+      "taeg_percentage": 2.2,
+      "min_loan_amount": 40000,
+      "max_loan_amount": 1000000,
+      "min_term_in_months": 120,
+      "max_term_in_months": 480,
+      "min_income": 1000
+    }
+  },
+  {
+    "id": 39,
+    "vertical_id": 3,
+    "provider_id": 9,
+    "is_sponsored": "FALSE",
+    "data": {
+      "taeg_percentage": 1.8,
+      "min_loan_amount": 40000,
+      "max_loan_amount": 1000000,
+      "min_term_in_months": 120,
+      "max_term_in_months": 480,
+      "min_income": 2000
+    }
+  },
+  {
+    "id": 40,
+    "vertical_id": 3,
+    "provider_id": 10,
+    "is_sponsored": "FALSE",
+    "data": {
+      "taeg_percentage": 2.2,
+      "min_loan_amount": 40000,
+      "max_loan_amount": 1000000,
+      "min_term_in_months": 120,
+      "max_term_in_months": 480,
+      "min_income": 1000
+    }
+  },
+  {
+    "id": 41,
+    "vertical_id": 3,
+    "provider_id": 10,
+    "is_sponsored": "FALSE",
+    "data": {
+      "taeg_percentage": 1.8,
+      "min_loan_amount": 40000,
+      "max_loan_amount": 1000000,
+      "min_term_in_months": 120,
+      "max_term_in_months": 480,
+      "min_income": 2000
+    }
+  },
+  {
+    "id": 42,
+    "vertical_id": 3,
+    "provider_id": 11,
+    "is_sponsored": "FALSE",
+    "data": {
+      "taeg_percentage": 2.2,
+      "min_loan_amount": 40000,
+      "max_loan_amount": 1000000,
+      "min_term_in_months": 120,
+      "max_term_in_months": 480,
+      "min_income": 1000
+    }
+  },
+  {
+    "id": 43,
+    "vertical_id": 3,
+    "provider_id": 11,
+    "is_sponsored": "FALSE",
+    "data": {
+      "taeg_percentage": 1.8,
+      "min_loan_amount": 40000,
+      "max_loan_amount": 1000000,
+      "min_term_in_months": 120,
+      "max_term_in_months": 480,
+      "min_income": 2000
+    }
+  }
+]'::json))
+INSERT INTO products (id ,vertical_id ,provider_id ,is_sponsored ,data)
+SELECT p.* FROM products_json l CROSS JOIN lateral
+json_populate_recordset(NULL::products, doc) AS p ON conflict (id)
+do UPDATE SET vertical_id = excluded.vertical_id, provider_id = excluded.provider_id, is_sponsored = excluded.is_sponsored, data = excluded.data;
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+WITH verticals_json (doc) AS (VALUES(
+'[
+  {
+    "id": 1,
+    "code": "BB",
+    "name": "Broadband"
+  },
+  {
+    "id": 2,
+    "code": "CC",
+    "name": "Credit Cards"
+  },
+  {
+    "id": 3,
+    "code": "HL",
+    "name": "Home loans"
+  }
+]'::json))
+INSERT INTO verticals (id, code, name)
+SELECT p.* FROM verticals_json l CROSS JOIN lateral
+json_populate_recordset(NULL::verticals, doc) AS p ON conflict (id)
+do UPDATE SET code = excluded.code, name = excluded.name;
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+WITH providers_json (doc) AS (VALUES(
+'[
+  {
+    "id": 1,
+    "code": "WZK",
+    "name": "WiZink",
+    "summary": "O WiZink, que opera em Portugal desde novembro de 2016, é um banco espanhol especializado em cartões de crédito e soluções de poupança simples para ir ao encontro das necessidades do dia-a-dia dos seus clientes. Atualmente, só em território nacional, o WiZink conta com mais de 700.000 clientes.",
+    "is_active": "TRUE"
+  },
+  {
+    "id": 2,
+    "code": "UNB",
+    "name": "Unibanco",
+    "summary": "O Unibanco é uma empresa pertencente à entidade financeira Unicre. Atualmente, os valores do Unibanco estão patentes na assinatura “pelo sim, pelo sim”, que evoca a proximidade, utilidade e disponibilidade dos serviços oferecidos, assim como a necessidade de utilizar um cartão de crédito Unibanco para resolver os imprevistos do dia a dia.",
+    "is_active": "TRUE"
+  },
+  {
+    "id": 3,
+    "code": "ACB",
+    "name": "ActivoBank",
+    "summary": "A Cofidis surgiu em Portugal em 1996, onde hoje em dia acompanha mais de 300 mil clientes numa relação sustentável e personalizada, tendo vindo a conquistar uma posição de referência na venda e gestão de crédito a particulares.",
+    "is_active": "FALSE"
+  },
+  {
+    "id": 4,
+    "code": "MEO",
+    "name": "MEO",
+    "summary": "A MEO - Serviços de Comunicações e Multimédia S.A. – marca que integra o grupo PT - surgiu em 2007 através do lançamento de um novo formato de pacotes de telecomunicações: o triple play, que engloba os serviços de Televisão, Internet e Voz.",
+    "is_active": "TRUE"
+  },
+  {
+    "id": 5,
+    "code": "VDF",
+    "name": "Vodafone",
+    "summary": "O Grupo Vodafone foi fundado no Reino Unido, em 1985, fruto de uma joint venture entre a empresa Racal Strategic Radio Ltd e a Millicom. Originalmente sob o nome de Racal-Millicom, o nome Vodafone surge como junção das palavras “VOice-DAta-FONE” (telecomunicações de voz e de dados).",
+    "is_active": "TRUE"
+  },
+  {
+    "id": 6,
+    "code": "NOS",
+    "name": "NOS",
+    "summary": "A operadora NOS nasceu em 2013 sob o nome de ZON/Optimus, resultado de uma fusão entre duas das maiores empresas de pacotes de telecomunicações do país: a ZON Multimédia e a Optimus Telecomunicações.",
+    "is_active": "TRUE"
+  },
+  {
+    "id": 7,
+    "code": "NOW",
+    "name": "NOWO",
+    "summary": "A NOWO surgiu com uma forte aposta numa nova abordagem para romper com o oligopólio da MEO, da NOS e da Vodafone no mercado português das telecomunicações.",
+    "is_active": "TRUE"
+  },
+  {
+    "id": 8,
+    "code": "ZON",
+    "name": "ZON",
+    "summary": "A ZON Multimédia é um grupo empresarial que integra o principal índice bolsista nacional, o PSI-20. É lider no mercado de pay TV em Portugal e é o segundo maior Internet provider.",
+    "is_active": "FALSE"
+  },
+  {
+    "id": 9,
+    "code": "STD",
+    "name": "Santander",
+    "summary": "Tendo entrado em Portugal em 1988, o Santander é o segundo maior banco privado no país e um dos maiores da União Europeia, estando localizado entre os 10 maiores grupos financeiros do Mundo.",
+    "is_active": "TRUE"
+  },
+  {
+    "id": 10,
+    "code": "CGD",
+    "name": "Caixa Geral de Depósitos",
+    "summary": "A Caixa Geral de Depósitos é uma referência no mercado financeiro português e internacional, uma vez que marca a sua presença pela Europa, América e Ásia.",
+    "is_active": "TRUE"
+  },
+  {
+    "id": 11,
+    "code": "BKI",
+    "name": "Bankinter",
+    "summary": "O Bankinter é reconhecido no mercado espanhol como uma das entidades financeiras mais solventes e rentáveis. É uma referência na área da inovação e na qualidade de serviço que presta.",
+    "is_active": "TRUE"
+  }
+]'::json))
+INSERT INTO providers (id, code, name, summary, is_active)
+SELECT p.* FROM providers_json l CROSS JOIN lateral
+json_populate_recordset(NULL::providers, doc) AS p ON conflict (id)
+do UPDATE SET code = excluded.code, name = excluded.name, summary = excluded.summary, is_active = excluded.is_active;
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE products(
+    id INT NOT NULL,
+    vertical_id INT NOT NULL,
+    provider_id INT NOT NULL,
+    is_sponsored boolean NOT NULL,
+	data json,
+	PRIMARY KEY(id),
+	constraint fk_vertical_id
+	FOREIGN KEY(vertical_id)
+	references verticals(id),
+	constraint fk_provider_id
+	FOREIGN KEY(provider_id)
+	references providers(id)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE verticals(
+    id INT NOT NULL PRIMARY KEY,
+	code VARCHAR(25),
+    name VARCHAR(100)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE providers(
+    id INT NOT NULL PRIMARY KEY,
+	code VARCHAR(25),
+    name VARCHAR(50),
+    summary varchar(300),
+    is_active BOOLEAN
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

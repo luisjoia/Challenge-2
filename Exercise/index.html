@@ -1,0 +1,48 @@
+<html>
+
+<head>
+   <title>ComparaJa</title>
+   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+   <script type="text/javascript" src="exercise_2.js"></script>
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+        crossorigin="anonymous">
+
+        <style>
+         .blink-bg{
+            color: rgb(255, 255, 255);
+            display: block;
+            animation: blinkingBackground 2s infinite;
+         }
+         @keyframes blinkingBackground{
+            0%		{ background-color: #10c018;}
+            25%		{ background-color: #1056c0;}
+            50%		{ background-color: #ef0a1a;}
+            75%		{ background-color: #254878;}
+            100%	        { background-color: #04a1d5;}
+         }
+      </style>
+</head>
+
+<body>
+   <div class="container">
+
+      <h1 class="text-center">ComparaJa</h1>
+   <h3 class="text-info">List of products:</h3>
+   <table id="products-table" class="table table-striped table-bordered">
+       <tr>
+           <th>Operadora</th>
+           <th>Canais</th>
+           <th>Velocidade</th>
+           <th>Cartões SIM</th>
+           <th>Dados Moveis</th>
+           <th>Preço</th>
+       </tr>
+   </table>
+
+   <p id="products-list-info" class="info alert" style="visibility:hidden" />
+   </div>
+</body>
+
+</html>
